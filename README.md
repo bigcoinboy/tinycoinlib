@@ -11,16 +11,16 @@ RPC client and utilities for Python 3.
 
 With it, your Python programs can interface with a Core Wallet.
 
-- A JSON-RPC client ([TinyCoinTalk @ talk.py](
+- A JSON-RPC client ([```TinyCoinTalk``` @ talk.py](
 https://github.com/bigcoinboy/tinycoinlib/tree/main/src/tinycoinlib/talk.py))
 
 In addition, simple APIs to easily
 
 - Accept coin payments
-([TinyCoinReceive @ receive.py](
+([```TinyCoinReceive``` @ receive.py](
 https://github.com/bigcoinboy/tinycoinlib/tree/main/src/tinycoinlib/receive.py))
 - Make coin payments
-([TinyCoinSend @ send.py](
+([```TinyCoinSend``` @ send.py](
 https://github.com/bigcoinboy/tinycoinlib/tree/main/src/tinycoinlib/send.py))
 
 
