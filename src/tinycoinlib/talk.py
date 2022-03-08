@@ -34,18 +34,16 @@ else:
 
 
 def call(url, command, user_colon_pass=None):
-    '''Send a command to the {}coind RPC server and retrieve its response.
+    '''Command the coind RPC server and return its response.
 
     Parameters
     ----------
     command : string
-        A valid {}coind RPC command. Try "help" if unsure.
-        Arguments have to be space separated, try "help {command_name}" for
-        more information.
+        Space separated command name and arguments. Example "com_name arg1 arg2".
     user_colon_pass: string
-        Username:password (separated by a semicolon). Alternatively, a loaded
-        cookie file (__cookie__:blablabla...). This parameter is identical to
-        the strRPCUserColonPass variable in bitcoin_cli.cpp
+        Semicolon separated "username:password" for authentication.
+        Alternatively, contents of a cookie file (__cookie__:blablabla...).
+        Note. This parameter corresponds to strRPCUserColonPass in bitcoin_cli.cpp
 
     Returns
     -------
@@ -54,35 +52,40 @@ def call(url, command, user_colon_pass=None):
     
     Raises
     ------
-    hhtp.client.HTTP
+    http.client.HTTPException
         If the server's response status code is other than 200 (success).
     '''
-    
+
     command = command.split(' ')[0]
     arguments = command.split(' ')[1:]
 
+    # Construct the POST request message
     message = {"method": command , "id": 1}
     if arguments:
         message['params'] = arguments
     message = json.dumps(message)
 
+    # Construct the POST request headers
     headers = {}
     headers['Authorization'] = b'Basic '+ b64encode( user_colon_pass.encode() )
     headers['Connection'] = 'close'
     headers['Content-Length'] = len(message)
 
+    # Make the POST request    
     c = http.client.HTTPConnection(url)
     c.request('POST', '', message, headers)
     
+    # Decode and study the server's response
     response = c.getresponse()
+    response_body = json.loads(response.read().decode('ISO-8859-1'))
 
     if response.status != 200:
-        message = json.loads(response.read().decode('ISO-8859-1'))['error']['message']
+        message = response_body['error']['message']
         raise http.client.HTTPException(
                 ('RPC server responded with HTTP status code {}. Message: {}'
                     ).format(response.status, message))
     
-    return json.loads(response.read().decode('ISO-8859-1'))['result']
+    return response_body['result']
 
 
 
