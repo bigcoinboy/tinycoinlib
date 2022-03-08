@@ -4,22 +4,25 @@ A minimalistic any coin (Bitcoin, Litecoin, Dogecoin..)
 RPC client and utilities for Python 3.
 
 - Tiny
-- Easy to review
-- Free and open source (GPLv3)
+- Readable code base
+- Free and open software (GPLv3)
 - No external dependencies
 - No API breaking changes in horizon
 
-It allows you to build Python programs that
+With it, your Python programs can interface with a Core Wallet.
 
-- Talk with the Core Wallet's RPC server
-([TinyCoinTalk @ talk.py](
+- A JSON-RPC client ([TinyCoinTalk @ talk.py](
 https://github.com/bigcoinboy/tinycoinlib/tree/main/src/tinycoinlib/talk.py))
-- Receive coin payments
+
+In addition, simple APIs to easily
+
+- Accept coin payments
 ([TinyCoinReceive @ receive.py](
 https://github.com/bigcoinboy/tinycoinlib/tree/main/src/tinycoinlib/receive.py))
 - Make coin payments
 ([TinyCoinSend @ send.py](
 https://github.com/bigcoinboy/tinycoinlib/tree/main/src/tinycoinlib/send.py))
+
 
 **Warning!** TinyCoinLib comes without any warranty.
 Improper use or software bugs can lead to loss of coins.
