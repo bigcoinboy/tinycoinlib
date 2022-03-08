@@ -14,8 +14,9 @@ from base64 import b64encode
 
 
 PRESET_PORTS = {
-        'bitcoin': '18332',
+        'bitcoin': '8332',
         'litecoin': '9332',
+        'dogecoin': 22555,
         }
 
 
